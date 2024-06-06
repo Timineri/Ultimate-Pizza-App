@@ -6,12 +6,12 @@ export default function Pizza() {
     <ul className="pizzas">
       {pizzaData.map((pizza) => {
         return (
-          <li className="pizza">
+          <li className={`pizza ${pizza.soldOut ? "sold-out" : " "}`}>
             <img src={pizza.photoName} alt="" />
             <div>
               <h3>{pizza.name}</h3>
               <p>{pizza.ingredients}</p>
-              <span>{pizza.price}</span>
+              <span>{pizza.soldOut ? "SOLD OUT" : pizza.price}</span>
             </div>
           </li>
         );
