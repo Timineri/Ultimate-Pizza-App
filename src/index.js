@@ -123,19 +123,63 @@
 // import React from "react";
 // import ReactDOM from "react-dom/client";
 // import App from "./App";
-
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
-
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
+import { pizzaData } from "./data";
+import "./index.css";
 
 function App() {
-  return <h1> Hello React!</h1>;
+  return (
+    <div className="container">
+      <Header />
+      <Main />
+      <Footer />
+    </div>
+  );
+}
+
+function Header() {
+  return (
+    <header className="header">
+      <h1>Fast React Pizza Co.</h1>
+    </header>
+  );
+}
+
+function Main() {
+  return (
+    <main className="menu">
+      <h2>Our Menu</h2>
+      <p>
+        Authentic Italian cuisine. 6 creative dishes to choose from. All from
+        our stone oven, all organic, all delicious.
+      </p>
+      <Pizza />
+    </main>
+  );
+}
+
+function Pizza() {
+  return (
+    <ul className="pizzas">
+      {pizzaData.map((pizza) => {
+        return (
+          <li className={`pizza ${pizza.soldOut ? "sold-out" : ""}`}>
+            <img src={pizza.photoName} alt={pizza.photoName} />
+            <div>
+              <h3>{pizza.name}</h3>
+              <p>{pizza.ingredients}</p>
+              <span>{pizza.soldOut ? "SOLD-OUT" : pizza.price}</span>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function Footer() {
+  return <h3>Footer</h3>;
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
